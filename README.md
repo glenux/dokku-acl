@@ -1,4 +1,4 @@
-# dokku-acl (beta) [![Build Status](https://img.shields.io/travis/dokku/dokku-acl.svg?branch=master "Build Status")](https://travis-ci.org/dokku/dokku-acl) [![IRC Network](https://img.shields.io/badge/irc-freenode-blue.svg "IRC Freenode")](https://webchat.freenode.net/?channels=dokku)
+# dokku-acl (beta) [![Build Status](https://img.shields.io/travis/glenux/dokku-acl.svg?branch=master "Build Status")](https://travis-ci.org/glenux/dokku-acl) [![IRC Network](https://img.shields.io/badge/irc-freenode-blue.svg "IRC Freenode")](https://webchat.freenode.net/?channels=dokku)
 
 Unofficial ACL plugin for dokku.
 
