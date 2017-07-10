@@ -1,6 +1,8 @@
 # dokku-acl (beta) [![Build Status](https://img.shields.io/travis/dokku/dokku-acl.svg?branch=master "Build Status")](https://travis-ci.org/dokku/dokku-acl) [![IRC Network](https://img.shields.io/badge/irc-freenode-blue.svg "IRC Freenode")](https://webchat.freenode.net/?channels=dokku)
 
-Contribution acl plugin for dokku.
+Unofficial ACL plugin for dokku.
+
+__CODE IS STILL UNSTABLE. DO NOT USE__
 
 ## Requirements
 
