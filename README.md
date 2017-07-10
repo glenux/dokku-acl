@@ -2,7 +2,7 @@
 
 Unofficial ACL plugin for dokku.
 
-__CODE IS STILL UNSTABLE. DO NOT USE__
+:warning: __CODE IS STILL UNSTABLE. DO NOT USE__
 
 ## Requirements
 
