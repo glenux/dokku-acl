@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Allow root/admin users to do everything
+# Deny plugin access to default users
+# Allow access to all other commands
+
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+
+SSH_USER=$1
+SSH_NAME=$2
+SSH_COMMAND=${3:-}
+SSH_PROJECT=${4:-}
+shift 2
+
+COMMAND_PREFIX=$(echo "$SSH_COMMAND" |cut --fields=1 --delimiter=:)
+ALLOWED_COMMANDS=$(echo "$SSH_NAME" |cut --only-delimited --fields=2 --delimiter=:)
+
+# debug
+1>&2 echo "limiter: SSH_USER=$SSH_USER"
+1>&2 echo "limiter: SSH_NAME=$SSH_NAME"
+1>&2 echo "limiter: SSH_COMMAND=$SSH_COMMAND"
+1>&2 echo "limiter: ALLOWED_COMMAND=$SSH_ALLOWED_COMMANDS"
+1>&2 echo "limiter: remains = $*"
+
+[[ "$SSH_USER" == "root" ]] && exit 0
+[[ "$SSH_NAME" == "admin" ]] && exit 0
+# Deny command if NAME does not allow it
+if echo "$ALLOWED_COMMANDS" | grep -q '\<'"$COMMAND_PREFIX"'\>' ; then
+        1>&2 echo "Access granted to $COMMAND_PREFIX:* for user $SSH_NAME"
+else
+        exit 1
+fi
+
+exit 0

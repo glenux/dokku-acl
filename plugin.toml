@@ -1,0 +1,4 @@
+[plugin]
+description = "dokku service limiter plugin"
+version = "0.1.0"
+[plugin.config]
