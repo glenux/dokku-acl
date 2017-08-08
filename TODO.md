@@ -1,0 +1,3 @@
+- Store group list
+- Store group => users list 
+- Store project => (group, perm) list
