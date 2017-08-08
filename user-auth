@@ -5,6 +5,7 @@
 
 set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
 
+PLUGIN="$(basename "$(dirname "$0")")"
 SSH_USER=$1
 SSH_NAME=$2
 SSH_COMMAND=${3:-}
@@ -15,11 +16,11 @@ COMMAND_PREFIX=$(echo "$SSH_COMMAND" |cut --fields=1 --delimiter=:)
 ALLOWED_COMMANDS=$(echo "$SSH_NAME" |cut --only-delimited --fields=2 --delimiter=:)
 
 # debug
-1>&2 echo "limiter: SSH_USER=$SSH_USER"
-1>&2 echo "limiter: SSH_NAME=$SSH_NAME"
-1>&2 echo "limiter: SSH_COMMAND=$SSH_COMMAND"
-1>&2 echo "limiter: ALLOWED_COMMAND=$SSH_ALLOWED_COMMANDS"
-1>&2 echo "limiter: remains = $*"
+1>&2 echo "$PLUGIN: SSH_USER=$SSH_USER"
+1>&2 echo "$PLUGIN: SSH_NAME=$SSH_NAME"
+1>&2 echo "$PLUGIN: SSH_COMMAND=$SSH_COMMAND"
+1>&2 echo "$PLUGIN: ALLOWED_COMMAND=$SSH_ALLOWED_COMMANDS"
+1>&2 echo "$PLUGIN: remains = $*"
 
 [[ "$SSH_USER" == "root" ]] && exit 0
 [[ "$SSH_NAME" == "admin" ]] && exit 0
