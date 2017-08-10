@@ -15,12 +15,14 @@ shift 2
 COMMAND_PREFIX=$(echo "$SSH_COMMAND" |cut --fields=1 --delimiter=:)
 ALLOWED_COMMANDS=$(echo "$SSH_NAME" |cut --only-delimited --fields=2 --delimiter=:)
 
-# debug
-1>&2 echo "$PLUGIN: SSH_USER=$SSH_USER"
-1>&2 echo "$PLUGIN: SSH_NAME=$SSH_NAME"
-1>&2 echo "$PLUGIN: SSH_COMMAND=$SSH_COMMAND"
-1>&2 echo "$PLUGIN: ALLOWED_COMMAND=$SSH_ALLOWED_COMMANDS"
-1>&2 echo "$PLUGIN: remains = $*"
+debug() {
+	# debug
+	1>&2 echo "$PLUGIN: SSH_USER=$SSH_USER"
+	1>&2 echo "$PLUGIN: SSH_NAME=$SSH_NAME"
+	1>&2 echo "$PLUGIN: SSH_COMMAND=$SSH_COMMAND"
+	1>&2 echo "$PLUGIN: ALLOWED_COMMAND=$SSH_ALLOWED_COMMANDS"
+	1>&2 echo "$PLUGIN: remains = $*"
+}
 
 [[ "$SSH_USER" == "root" ]] && exit 0
 [[ "$SSH_NAME" == "admin" ]] && exit 0
@@ -28,6 +30,7 @@ ALLOWED_COMMANDS=$(echo "$SSH_NAME" |cut --only-delimited --fields=2 --delimiter
 if echo "$ALLOWED_COMMANDS" | grep -q '\<'"$COMMAND_PREFIX"'\>' ; then
         1>&2 echo "Access granted to $COMMAND_PREFIX:* for user $SSH_NAME"
 else
+		debug
         exit 1
 fi
 
